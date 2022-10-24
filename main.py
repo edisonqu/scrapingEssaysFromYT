@@ -1,16 +1,8 @@
-from youtube_transcript_api import YouTubeTranscriptApi
+from cleanTranscriptWithOpenAI import *
+from scrapeYoutube import *
+from getTranscript import *
+from writeToExcel import *
 
 
-
-video_id = "hMB9E_0FwIE"
-text = ""
-transcript = YouTubeTranscriptApi.get_transcript(video_id)
-
-
-print(transcript)
-for rawText in transcript:
-    text += rawText['text'] +" "
-
-
-with open('text1.txt', 'w') as f:
-    f.write(str(text))
+if __name__ == '__main__':
+    print()
