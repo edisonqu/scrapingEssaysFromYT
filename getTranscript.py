@@ -1,8 +1,8 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 
 
-def getTranscript(video_id, title,listData):
-    video_id = "hMB9E_0FwIE"
+def getTranscripts(video_id):
+    list_of_transcripts = []
     text = ""
     transcript = YouTubeTranscriptApi.get_transcript(video_id)
 
@@ -10,6 +10,10 @@ def getTranscript(video_id, title,listData):
     for rawText in transcript:
         text += rawText['text'] +" "
 
-    listData.append(text)
+    print(text)
+    # if len(text.split()) > 2500:
 
-    return listData
+
+    list_of_transcripts.append(text)
+
+    return list_of_transcripts

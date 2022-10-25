@@ -35,5 +35,4 @@ def scrapeVideos(query):
 
     driver.quit()
     return listOfLinks
-print(scrapeVideos("jones barbeque foot massage "))
 
