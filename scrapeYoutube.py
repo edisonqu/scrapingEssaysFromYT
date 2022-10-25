@@ -12,9 +12,7 @@ def scrapeVideos(query):
     query.strip().replace(" ","+")
     driver = webdriver.Firefox()
     driver.get("https://www.youtube.com/results?search_query="+query)
-    # driver.find_element(By.XPATH,'//*[@id="content"]/div[2]/div[6]/div[1]/ytd-button-renderer[2]/yt-button-shape/button/yt-touch-feedback-shape/div').click()
-    # a = driver.find_element(By.ID,"video-title")
-    # driver.find_element(By.XPATH,'//*[@id="video-title"]').click()
+
     for i in range(10):
         html = driver.find_element(By.TAG_NAME,'html')
         html.send_keys(Keys.END)
@@ -29,12 +27,13 @@ def scrapeVideos(query):
 
     for links in elemsLink:
         youtubeWatchLinks = links.get_attribute("href")
-        # print(elem.get_attribute("href"))
-        if "watch?v=" in youtubeWatchLinks:
-            if youtubeWatchLinks not in listOfLinks:
-                listOfLinks.append(youtubeWatchLinks)
+        if "watch?v=" in youtubeWatchLinks and "t=" not in youtubeWatchLinks:
+            video_id = youtubeWatchLinks.split("=")[-1]
+            if video_id not in listOfLinks:
+                listOfLinks.append(video_id)
                 print("HIT:  "+youtubeWatchLinks)
 
-    print(listOfLinks)
-scrapeVideos("jones barbeque foot massage ")
+    driver.quit()
+    return listOfLinks
+print(scrapeVideos("jones barbeque foot massage "))
 
